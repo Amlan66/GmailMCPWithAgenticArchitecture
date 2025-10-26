@@ -1,0 +1,70 @@
+[project]
+name = "first-padm"
+version = "0.1.0"
+description = "MCP server with Pydantic models for calculator and system automation tools"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    # Core MCP framework
+    "mcp>=1.0.0",
+    # Pydantic for data validation
+    "pydantic>=2.0.0",
+    # Image processing
+    "Pillow>=10.0.0",
+    # Windows automation (Windows only)
+    "pywinauto>=0.6.8",
+    "pywin32>=306",
+    "pydirectinput>=1.0.4",
+    "keyboard>=0.13.5",
+    # Environment variables
+    "python-dotenv>=1.0.0",
+    # Google APIs
+    "google-api-python-client>=2.100.0",
+    "google-auth-httplib2>=0.2.0",
+    "google-auth-oauthlib>=1.0.0",
+    "google-auth>=2.23.0",
+    "google-genai==1.39.1",
+    "pyautogui>=0.9.54",
+    "opencv-python>=4.12.0.88",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Add this section to specify which files to include
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+include = [
+    "action.py",
+    "model.py",
+    "example2.py",
+    "main.py",
+    "talk2mcp-4.py",
+    "perception.py",
+    "memory.py",
+    "decision.py"
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py313']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
